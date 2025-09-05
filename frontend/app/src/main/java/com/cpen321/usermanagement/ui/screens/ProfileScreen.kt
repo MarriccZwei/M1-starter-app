@@ -144,7 +144,8 @@ private fun ProfileContent(
             isLoading = uiState.isLoadingProfile,
             onManageProfileClick = callbacks.onManageProfileClick,
             onManageHobbiesClick = callbacks.onManageHobbiesClick,
-            onDeleteAccountClick = callbacks.onDeleteAccountClick
+            onDeleteAccountClick = callbacks.onDeleteAccountClick,
+            onSignOutClick = callbacks.onSignOutClick
         )
     }
 
@@ -190,6 +191,7 @@ private fun ProfileBody(
     onManageProfileClick: () -> Unit,
     onManageHobbiesClick: () -> Unit,
     onDeleteAccountClick: () -> Unit,
+    onSignOutClick: ()->Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -208,7 +210,8 @@ private fun ProfileBody(
                 ProfileMenuItems(
                     onManageProfileClick = onManageProfileClick,
                     onManageHobbiesClick = onManageHobbiesClick,
-                    onDeleteAccountClick = onDeleteAccountClick
+                    onDeleteAccountClick = onDeleteAccountClick,
+                    onSignOutClick = onSignOutClick
                 )
             }
         }
@@ -220,6 +223,7 @@ private fun ProfileMenuItems(
     onManageProfileClick: () -> Unit,
     onManageHobbiesClick: () -> Unit,
     onDeleteAccountClick: () -> Unit,
+    onSignOutClick: ()->Unit,
     modifier: Modifier = Modifier
 ) {
     val spacing = LocalSpacing.current
@@ -238,7 +242,8 @@ private fun ProfileMenuItems(
         )
 
         AccountSection(
-            onDeleteAccountClick = onDeleteAccountClick
+            onDeleteAccountClick = onDeleteAccountClick,
+            onSignOutClick = onSignOutClick
         )
     }
 }
@@ -261,6 +266,7 @@ private fun ProfileSection(
 @Composable
 private fun AccountSection(
     onDeleteAccountClick: () -> Unit,
+    onSignOutClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -268,6 +274,7 @@ private fun AccountSection(
         verticalArrangement = Arrangement.spacedBy(LocalSpacing.current.medium)
     ) {
         DeleteAccountButton(onClick = onDeleteAccountClick)
+        SignOutButton(onClick = onSignOutClick)
     }
 }
 
@@ -300,6 +307,17 @@ private fun DeleteAccountButton(
     MenuButtonItem(
         text = stringResource(R.string.delete_account),
         iconRes = R.drawable.ic_delete_forever,
+        onClick = onClick,
+    )
+}
+
+@Composable
+private fun SignOutButton(
+    onClick: () -> Unit,
+) {
+    MenuButtonItem(
+        text = stringResource(R.string.sign_out),
+        iconRes = R.drawable.ic_delete_forever, //TODO: Later replace with designated graphics
         onClick = onClick,
     )
 }
