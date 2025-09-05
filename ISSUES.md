@@ -22,9 +22,9 @@
 
 ### Issue 4: [In Profile editor, the "Bio" text box is not selectable]
 
-**Description**: [User cannot select the textbox and, as such cannot edit the Bio.]
+**Description**: [User cannot select the textbox and, as such cannot edit the Bio. It is expected that users are able to edit their bio after account creation, this is the case in Whatsapp and FB, for example.]
 
-**How it was fixed?**: [WRITE_ISSUE_SOLUTION]
+**How it was fixed?**: [The bio text box has been taken out of an ufocusable Row, and its readOnly has been changed from true to false.]
 
 ### Issue 5: [No biography request after account delete and re-creation]
 
