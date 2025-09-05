@@ -14,13 +14,19 @@
 
 **How it was fixed?**: [A sign out button was created, following what the non-repaired delete account button was doing, which was indeed signing out and not deleting the account. Required updating the strings xml, Navigation.kt, NavigationStateManager.kt, AuthViewModel.kt and ProfileScreen.kt]
 
-### Issue 3: [Profile Picture disappears after clicking "save" on Hobbies]
+### Issue 3: [Profile Picture disappears after clicking any "Save" button in the app]
 
 **Description**: []
 
 **How it was fixed?**: [WRITE_ISSUE_SOLUTION]
 
-### Issue 4: [No biography request after account delete and re-creation]
+### Issue 4: [In Profile editor, the "Bio" text box is not selectable]
+
+**Description**: [User cannot select the textbox and, as such cannot edit the Bio.]
+
+**How it was fixed?**: [WRITE_ISSUE_SOLUTION]
+
+### Issue 5: [No biography request after account delete and re-creation]
 
 **Description**: [After deleting the user and singing up with the same google account as of the deleted user the request to fill in the biography was not present, instead, the app jumped to the "Welcome" screen]
 
