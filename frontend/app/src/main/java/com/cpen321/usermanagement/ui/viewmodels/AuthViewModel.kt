@@ -171,7 +171,7 @@ class AuthViewModel @Inject constructor(
 
     fun handleAccountDeletion() {
         viewModelScope.launch {
-            authRepository.clearToken()
+            authRepository.deleteUser()
             _uiState.value = AuthUiState(
                 isAuthenticated = false,
                 isCheckingAuth = false,

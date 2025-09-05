@@ -203,10 +203,10 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deleteUser(): Result<Unit> {
-        val user = getCurrentUser()
-        val res = clearToken()
-        //TODO user deletion
-
-        return res
+        val resdel = RetrofitClient.userInterface.deleteProfile("")
+        if (!resdel.isSuccessful) { //TODO: for deployment treat it softer than fatal app destruction
+            error("Delete Failed ${resdel.message()}")
+        }
+        return clearToken()
     }
 }
