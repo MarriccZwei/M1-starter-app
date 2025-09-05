@@ -201,4 +201,12 @@ class AuthRepositoryImpl @Inject constructor(
         }
         return false
     }
+
+    override suspend fun deleteUser(): Result<Unit> {
+        val user = getCurrentUser()
+        val res = clearToken()
+        //TODO user deletion
+
+        return res
+    }
 }
