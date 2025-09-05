@@ -48,7 +48,8 @@ data class ProfileScreenActions(
     val onBackClick: () -> Unit,
     val onManageProfileClick: () -> Unit,
     val onManageHobbiesClick: () -> Unit,
-    val onAccountDeleted: () -> Unit
+    val onAccountDeleted: () -> Unit,
+    val onSignOut: () -> Unit
 )
 
 private data class ProfileScreenCallbacks(
@@ -59,7 +60,8 @@ private data class ProfileScreenCallbacks(
     val onDeleteDialogDismiss: () -> Unit,
     val onDeleteDialogConfirm: () -> Unit,
     val onSuccessMessageShown: () -> Unit,
-    val onErrorMessageShown: () -> Unit
+    val onErrorMessageShown: () -> Unit,
+    val onSignOutClick: () -> Unit
 )
 
 @Composable
@@ -102,7 +104,11 @@ fun ProfileScreen(
                 actions.onAccountDeleted()
             },
             onSuccessMessageShown = profileViewModel::clearSuccessMessage,
-            onErrorMessageShown = profileViewModel::clearError
+            onErrorMessageShown = profileViewModel::clearError,
+            onSignOutClick = {
+                //TODO add a sign out in Auth View Model
+                actions.onSignOut()
+            }
         )
     )
 }
