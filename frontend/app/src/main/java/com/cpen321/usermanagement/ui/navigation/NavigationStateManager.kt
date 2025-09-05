@@ -173,7 +173,7 @@ class NavigationStateManager @Inject constructor() {
 
         updateAuthenticationState(
             isAuthenticated = false,
-            needsProfileCompletion = false,
+            needsProfileCompletion = true, //was set to false so after delete bio was not enforced
             isLoading = false
         )
         navigateToAuthWithMessage("Account deleted successfully!")
