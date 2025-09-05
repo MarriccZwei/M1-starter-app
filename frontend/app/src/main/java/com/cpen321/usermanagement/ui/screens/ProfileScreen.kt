@@ -106,7 +106,7 @@ fun ProfileScreen(
             onSuccessMessageShown = profileViewModel::clearSuccessMessage,
             onErrorMessageShown = profileViewModel::clearError,
             onSignOutClick = {
-                //TODO add a sign out in Auth View Model
+                authViewModel.handleSignOut()
                 actions.onSignOut()
             }
         )
