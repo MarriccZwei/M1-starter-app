@@ -15,9 +15,13 @@ import com.cpen321.usermanagement.ui.theme.ProvideSpacing
 import com.cpen321.usermanagement.ui.theme.UserManagementTheme
 import dagger.hilt.android.AndroidEntryPoint
 
+import com.cpen321.usermanagement.data.remote.wl.MickiewiczWL
+import kotlinx.coroutines.runBlocking
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        runBlocking{ MickiewiczWL.loadAll() } //calling the api only once to get the poem list
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
