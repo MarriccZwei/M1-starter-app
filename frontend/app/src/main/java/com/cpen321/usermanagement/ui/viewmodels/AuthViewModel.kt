@@ -49,34 +49,9 @@ class AuthViewModel @Inject constructor(
     val uiState: StateFlow<AuthUiState> = _uiState.asStateFlow()
 
     init {
-        if (!_uiState.value.shouldSkipAuthCheck) {
+        //if (!_uiState.value.shouldSkipAuthCheck) {
             checkAuthenticationStatus()
-        } //Better safe than sorry, we should always catch users with an empty bio
-        else {
-            checkIfBioNotEmpty()
-        }
-    }
-
-    private fun checkIfBioNotEmpty() {
-        viewModelScope.launch {
-            try {
-                val isAuthenticated = authRepository.isUserAuthenticated()
-                val user = if (isAuthenticated) authRepository.getCurrentUser() else null
-                val needsProfileCompletion = user?.bio == null || user.bio.isBlank()
-
-                updateNavigationState(
-                    isAuthenticated = isAuthenticated,
-                    needsProfileCompletion = needsProfileCompletion,
-                    isLoading = false
-                )
-            } catch (e: java.net.SocketTimeoutException) {
-                handleAuthError("Network timeout. Please check your connection.", e)
-            } catch (e: java.net.UnknownHostException) {
-                handleAuthError("No internet connection. Please check your network.", e)
-            } catch (e: java.io.IOException) {
-                handleAuthError("Connection error. Please try again.", e)
-            }
-        }
+        //} //Better safe than sorry, we should always catch users with an empty bio
     }
 
     private fun checkAuthenticationStatus() {
