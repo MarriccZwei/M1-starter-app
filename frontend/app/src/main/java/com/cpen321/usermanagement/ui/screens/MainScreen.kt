@@ -30,13 +30,6 @@ import com.cpen321.usermanagement.ui.viewmodels.MainViewModel
 import com.cpen321.usermanagement.ui.theme.LocalFontSizes
 import com.cpen321.usermanagement.ui.theme.LocalSpacing
 
-import androidx.compose.foundation.clickable
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextDecoration
-import com.cpen321.usermanagement.data.remote.wl.RetrofitClientWL
-
 @Composable
 fun MainScreen(
     mainViewModel: MainViewModel,
@@ -164,7 +157,6 @@ private fun MainBody(
         contentAlignment = Alignment.Center
     ) {
         WelcomeMessage()
-        PoemHyperLink()
     }
 }
 
@@ -180,21 +172,5 @@ private fun WelcomeMessage(
         fontSize = fontSizes.extraLarge3,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = modifier
-    )
-}
-
-@Composable
-fun PoemHyperLink() {
-    val poem = RetrofitClientWL.selectedPoem
-    val uriHandler = LocalUriHandler.current
-    Text(
-        text = "${stringResource(R.string.adam_mickiewicz)}\n ${poem.title}",
-        style = TextStyle(
-            color = Color.Blue,
-            textDecoration = TextDecoration.Underline
-        ),
-        modifier = Modifier.clickable {
-            uriHandler.openUri(poem.url)
-        }
     )
 }

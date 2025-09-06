@@ -1,5 +1,7 @@
 package com.cpen321.usermanagement.data.remote.wl
 
+import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
 
 interface MickiewiczInterface {
