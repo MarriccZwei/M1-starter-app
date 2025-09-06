@@ -14,11 +14,13 @@ import com.cpen321.usermanagement.ui.theme.ProvideFontSizes
 import com.cpen321.usermanagement.ui.theme.ProvideSpacing
 import com.cpen321.usermanagement.ui.theme.UserManagementTheme
 import dagger.hilt.android.AndroidEntryPoint
+import com.cpen321.usermanagement.data.remote.wl.RetrofitClientWL
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        RetrofitClientWL.loadPoems() //So that we load the poems only once
         enableEdgeToEdge()
         setContent {
             UserManagementTheme {
