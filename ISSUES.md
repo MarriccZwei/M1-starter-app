@@ -4,7 +4,7 @@
 
 ### Issue 1: ["Delete Profile" button does not work]
 
-**Description**: [Upon clicking the delete button, user gets logged out of application, but they can sign in again, they do not need to sign up]
+**Description**: [Upon clicking the delete button, user gets logged out of application, but they can sign in again, they do not need to sign up, hence the acount is not deleted]
 
 **How it was fixed?**: []
 
