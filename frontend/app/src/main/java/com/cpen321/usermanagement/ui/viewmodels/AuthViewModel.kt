@@ -175,7 +175,7 @@ class AuthViewModel @Inject constructor(
             _uiState.value = AuthUiState(
                 isAuthenticated = false,
                 isCheckingAuth = false,
-                shouldSkipAuthCheck = true // Skip auth check after manual sign out
+                shouldSkipAuthCheck = false // Skip auth check after manual sign out? What if you sing up to another account which does NOT have bio completed ?!
             )
         }
     }
@@ -186,7 +186,7 @@ class AuthViewModel @Inject constructor(
             _uiState.value = AuthUiState(
                 isAuthenticated = false,
                 isCheckingAuth = false,
-                shouldSkipAuthCheck = true // Skip auth check after manual sign out
+                shouldSkipAuthCheck = false // Skip auth check after manual sign out? What if you sing up to another account which does NOT have bio completed ?!
             )
         }
     }
