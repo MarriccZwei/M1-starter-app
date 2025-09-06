@@ -16,7 +16,7 @@
 
 ### Issue 3: [Profile Picture disappears after clicking any "Save" button in the app]
 
-**Description**: []
+**Description**: [Updated profile picture appears in the UI, however, it disappears as soon as any of the "save" button is clicked]
 
 **How it was fixed?**: [WRITE_ISSUE_SOLUTION]
 
@@ -28,6 +28,6 @@
 
 ### Issue 5: [No biography request after account delete and re-creation]
 
-**Description**: [After deleting the user and singing up with the same google account as of the deleted user the request to fill in the biography was not present, instead, the app jumped to the "Welcome" screen]
+**Description**: [After deleting the user and singing up with the same google account as of the deleted user the request to fill in the biography was not present, instead, the app jumped to the "Welcome" screen.]
 
-**How it was fixed?**: [In NavigationStateManager, when handling delete, needsProfileCompletion was set to false, but clearly it should be true, as we assume the bio was deleted together with the user, so we have to enter the bio again. Cross-checked that after deleting one account, another non-deleted account will not need to update bio, which was the risk associated with setting needsProfileCompletion to true]
+**How it was fixed?**: [Most occurences have been fixed by making the app not skip authetication checks under any circumstances (AuthViewModel.kt, line 53), and by setting the needsProfileCompletition to true whereever possible  However, one instance of errors remains if we sign out from a user and sign up on another one - the Completion window is skipped]

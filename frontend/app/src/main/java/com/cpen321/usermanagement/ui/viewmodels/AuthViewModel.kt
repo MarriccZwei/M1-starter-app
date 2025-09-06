@@ -87,7 +87,7 @@ class AuthViewModel @Inject constructor(
 
     private fun updateNavigationState(
         isAuthenticated: Boolean = false,
-        needsProfileCompletion: Boolean = false,
+        needsProfileCompletion: Boolean = true,
         isLoading: Boolean = false
     ) {
         navigationStateManager.updateAuthenticationState(
@@ -105,7 +105,9 @@ class AuthViewModel @Inject constructor(
             isAuthenticated = false,
             errorMessage = errorMessage
         )
-        updateNavigationState()
+        updateNavigationState(needsProfileCompletion = true,
+            isLoading = false,
+            isAuthenticated = false)
     }
 
     suspend fun signInWithGoogle(context: Context): Result<GoogleIdTokenCredential> {
