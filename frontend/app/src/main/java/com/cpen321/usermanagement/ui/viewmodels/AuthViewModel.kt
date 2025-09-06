@@ -49,9 +49,9 @@ class AuthViewModel @Inject constructor(
     val uiState: StateFlow<AuthUiState> = _uiState.asStateFlow()
 
     init {
-        if (!_uiState.value.shouldSkipAuthCheck) {
+        //if (!_uiState.value.shouldSkipAuthCheck) {
             checkAuthenticationStatus()
-        }
+        //} //Better safe than sorry, we should always catch users with an empty bio
     }
 
     private fun checkAuthenticationStatus() {
