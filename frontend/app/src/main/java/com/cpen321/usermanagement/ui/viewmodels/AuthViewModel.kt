@@ -60,6 +60,9 @@ class AuthViewModel @Inject constructor(
     private fun checkIfBioNotEmpty() {
         viewModelScope.launch {
             try {
+                _uiState.value = _uiState.value.copy(isCheckingAuth = true)
+                updateNavigationState(isLoading = true)
+
                 val isAuthenticated = authRepository.isUserAuthenticated()
                 val user = if (isAuthenticated) authRepository.getCurrentUser() else null
                 val needsProfileCompletion = user?.bio == null || user.bio.isBlank()
