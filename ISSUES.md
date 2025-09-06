@@ -6,7 +6,7 @@
 
 **Description**: [Upon clicking the delete button, user gets logged out of application, but they can sign in again, they do not need to sign up, hence the acount is not deleted]
 
-**How it was fixed?**: []
+**How it was fixed?**: [An additional delete function was added to ProfileInterface.kt, that conducted the deletion using Retrofit. It was then called from a new function in AuthRepositoryImpl.kt, that was called from handleAccountDeletion() in AuthViewModel.kt]
 
 ### Issue 2: [Log Out option is missing]
 
@@ -18,16 +18,16 @@
 
 **Description**: [Updated profile picture appears in the UI, however, it disappears as soon as any of the "save" button is clicked]
 
-**How it was fixed?**: [Created picture saving functions similar to those for hobbies and profile info saving. This included calling the backen to save the profile picture (in ProfileRepositoryImpl.kt)]
+**How it was fixed?**: [Created picture saving functions similar to those for hobbies and profile info saving. This included calling the backend to save the profile picture (in ProfileRepositoryImpl.kt). Other files altered to implement the saving functions: ProfileRepository.kt, ManageProfileScreen.kt, ProfileViewModel.kt]
 
 ### Issue 4: [In Profile editor, the "Bio" text box is not selectable]
 
 **Description**: [User cannot select the textbox and, as such cannot edit the Bio. It is expected that users are able to edit their bio after account creation, this is the case in Whatsapp and FB, for example.]
 
-**How it was fixed?**: [The bio text box has been taken out of an ufocusable Row, and its readOnly has been changed from true to false.]
+**How it was fixed?**: [The bio text box has been taken out of an ufocusable Row, and its readOnly has been changed from true to false. This was done in ManageProfileScreen.kt]
 
 ### Issue 5: [No biography request after account delete and re-creation]
 
 **Description**: [After deleting the user and singing up with the same google account as of the deleted user the request to fill in the biography was not present, instead, the app jumped to the "Welcome" screen.]
 
-**How it was fixed?**: [Most occurences have been fixed by making the app not skip authetication checks under any circumstances (AuthViewModel.kt, line 53), and by setting the needsProfileCompletition to true whereever possible  However, one instance of errors remains if we sign out from a user and sign up on another one - the Completion window is skipped. A debugger run reveals that in that case the completion screen is loaded, but is skippend instantly.]
+**How it was fixed?**: [Most occurences have been fixed by making the app not skip authetication checks under any circumstances (AuthViewModel.kt, line 53), and by setting the needsProfileCompletition to true whereever it was arbitrarily specified.  However, one instance of errors remains: if we sign out from a user and sign up on another one - the Completion window is skipped. A debugger run reveals that in that case the completion screen is loaded, but is skippend instantly.]
