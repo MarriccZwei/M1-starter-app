@@ -1,7 +1,10 @@
 package com.cpen321.usermanagement.ui.screens
 
 import Icon
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -20,9 +23,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import com.cpen321.usermanagement.R
+import com.cpen321.usermanagement.data.remote.wl.MickiewiczWL
 import com.cpen321.usermanagement.ui.components.MessageSnackbar
 import com.cpen321.usermanagement.ui.components.MessageSnackbarState
 import com.cpen321.usermanagement.ui.viewmodels.MainUiState
@@ -156,7 +165,10 @@ private fun MainBody(
             .padding(paddingValues),
         contentAlignment = Alignment.Center
     ) {
-        WelcomeMessage()
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            WelcomeMessage()
+            HyperlinkText()
+        }
     }
 }
 
@@ -172,5 +184,24 @@ private fun WelcomeMessage(
         fontSize = fontSizes.extraLarge3,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = modifier
+    )
+}
+
+@Composable
+fun HyperlinkText() {
+    MickiewiczWL.updateSelectedPoem() //re-rolling the poem at every generation of the main screen
+    val uriHandler = LocalUriHandler.current
+    Text(
+        text = "${stringResource(R.string.adam_mickiewicz)}\n${MickiewiczWL.selectedPoem.title}",
+        textAlign = TextAlign.Center,
+        style = TextStyle(
+            color = Color.Blue,
+            textDecoration = TextDecoration.Underline
+        ),
+        fontSize = LocalFontSizes.current.extraLarge3,
+        modifier = Modifier.clickable {
+            //.html ggoes straight to the actual text
+            uriHandler.openUri("${MickiewiczWL.selectedPoem.url.dropLast(1)}.html")
+        }
     )
 }

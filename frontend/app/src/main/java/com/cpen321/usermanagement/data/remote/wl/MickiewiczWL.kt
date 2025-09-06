@@ -5,6 +5,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import android.util.Log
 
 
 object MickiewiczWL {
@@ -30,7 +31,7 @@ object MickiewiczWL {
     private val mickiewiczInterface: MickiewiczInterface = retrofit.create(MickiewiczInterface::class.java)
 
     var selectedPoem = MickiewiczPoem()
-    private var poemList = listOf<MickiewiczPoem>(selectedPoem)
+    private var poemList = listOf<MickiewiczPoem>(MickiewiczPoem())
 
     suspend fun loadAll(){
         try{
@@ -39,10 +40,20 @@ object MickiewiczWL {
                 poemList = response.body()?:poemList
             }
             else{
-                poemList = listOf<MickiewiczPoem>(MickiewiczPoem())
+                poemList = listOf<MickiewiczPoem>(MickiewiczPoem(
+                    title = "Error! Could not get data from Wolne Lektury API."
+                )) //so that the app can continue even without the poems, it ain't very critical
+                Log.e("WL", "Could not get the data from Wolne Lektury API")
             }
         } catch (e: Exception){
-            Error(e.message) //here to see the error message with debuger
+            poemList = listOf<MickiewiczPoem>(MickiewiczPoem(
+                title = "Error! Failed to connect to Wolne Lektury API."
+            )) //so that the app can continue even without the poems, it ain't very critical
+            Log.e("WL", e.message.toString())
         }
+    }
+
+    fun updateSelectedPoem(){
+        selectedPoem = poemList.random()
     }
 }
