@@ -317,7 +317,7 @@ private fun SignOutButton(
 ) {
     MenuButtonItem(
         text = stringResource(R.string.sign_out),
-        iconRes = R.drawable.ic_delete_forever, //TODO: Later replace with designated graphics
+        iconRes = R.drawable.ic_sign_out,
         onClick = onClick,
     )
 }
