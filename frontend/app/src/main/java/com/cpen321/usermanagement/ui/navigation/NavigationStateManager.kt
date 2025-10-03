@@ -173,7 +173,7 @@ class NavigationStateManager @Inject constructor() {
 
         updateAuthenticationState(
             isAuthenticated = false,
-            needsProfileCompletion = true, //if we sign another user
+            needsProfileCompletion = false,
             isLoading = false
         )
         navigateToAuthWithMessage("Account deleted successfully!")
@@ -184,7 +184,7 @@ class NavigationStateManager @Inject constructor() {
 
         updateAuthenticationState(
             isAuthenticated = false,
-            needsProfileCompletion = true, //if we sign another user
+            needsProfileCompletion = false,
             isLoading = false
         )
         navigateToAuthWithMessage("Signed Out successfully!")
